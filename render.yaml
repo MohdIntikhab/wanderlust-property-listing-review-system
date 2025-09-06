@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: major-project-airbnb
+    env: node
+    plan: free   # You can switch to paid if needed
+    buildCommand: "npm install"
+    startCommand: "node app.js"
+    autoDeploy: true
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ATLASDB_URL
+        sync: false   # Add your MongoDB Atlas connection string in Render dashboard
+      - key: MAP_TOKEN
+        sync: false   # Add your Mapbox token in Render dashboard
