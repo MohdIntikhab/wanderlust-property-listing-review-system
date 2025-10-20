@@ -98,11 +98,11 @@ app.use((req,res, next)=>{
 // });
 
 app.use("/listings", listingRouter);
-app.use("/listings/:id/reviews", reviewRouter);
-app.use("/", userRouter); 
+app.use("/listings/:id/reviews", reviewRouter); 
 app.get("/", (req, res) => {
   res.redirect("/listings");  // or res.render("home") if you have a homepage template
-});
+}); 
+app.use("/", userRouter);
 
 app.use((err, req, res, next)=>{
   let{statusCode=500, message="Something went wrong"} = err; 
