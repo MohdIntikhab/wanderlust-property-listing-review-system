@@ -43,6 +43,14 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate); 
 app.use(express.static(path.join(__dirname,"/public"))); 
 
+
+app.use(
+  helmet({
+    contentSecurityPolicy: false
+  })
+);
+
+
 const store = MongoStore.create({
   mongoUrl: dbUrl,
   crypto: {
