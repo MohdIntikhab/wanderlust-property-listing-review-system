@@ -6,7 +6,7 @@ if(process.env.NODE_ENV != "production"){
 
 const express = require("express");
 const app = express(); 
-const helmet = require("helmet");
+
 const mongoose = require("mongoose"); 
 const path = require("path");
 const methodOverride = require("method-override");  
@@ -42,9 +42,6 @@ async function main() {
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname,"views"));  
 
-app.set("view options", {
-  compileDebug: false
-});
 
 
 app.use(express.urlencoded({extended: true})); 
@@ -53,55 +50,8 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname,"/public"))); 
 
 
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        connectSrc: [
-          "'self'",
-          "https://api.mapbox.com",
-          "https://events.mapbox.com",
-          "https://cdn.jsdelivr.net",
-        ],
-        scriptSrc: [
-          "'self'",
-          "'unsafe-inline'",
-          "https://cdn.jsdelivr.net",
-          "https://kit.fontawesome.com",
-          "https://api.mapbox.com",
-        ],
-        styleSrc: [
-          "'self'",
-          "'unsafe-inline'",
-          "https://cdnjs.cloudflare.com",
-          "https://cdn.jsdelivr.net",
-          "https://kit.fontawesome.com",
-          "https://stackpath.bootstrapcdn.com",
-          "https://fonts.googleapis.com",
-          "https://api.mapbox.com",
-        ],
-        fontSrc: [
-          "'self'",
-          "https://fonts.gstatic.com",
-          "https://cdnjs.cloudflare.com",
-          "https://cdn.jsdelivr.net",
-        ],
-        imgSrc: [
-          "'self'",
-          "data:",
-          "blob:",
-          "https://res.cloudinary.com",
-          "https://images.unsplash.com",
-        ],
-        workerSrc: ["'self'", "blob:"],
-        objectSrc: ["'none'"],
-      },
-    },
-    crossOriginEmbedderPolicy: false,
-    crossOriginResourcePolicy: false,
-  })
-);
+     
+    
 
 
 const store = MongoStore.create({
