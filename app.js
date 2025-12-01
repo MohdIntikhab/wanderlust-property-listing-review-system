@@ -40,7 +40,13 @@ async function main() {
 
 } 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname,"views")); 
+app.set("views", path.join(__dirname,"views"));  
+
+app.set("view options", {
+  compileDebug: false
+});
+
+
 app.use(express.urlencoded({extended: true})); 
 app.use(methodOverride("_method")); 
 app.engine("ejs", ejsMate); 
@@ -61,7 +67,6 @@ app.use(
         scriptSrc: [
           "'self'",
           "'unsafe-inline'",
-          "'unsafe-eval'",
           "https://cdn.jsdelivr.net",
           "https://kit.fontawesome.com",
           "https://api.mapbox.com",
@@ -91,8 +96,10 @@ app.use(
         ],
         workerSrc: ["'self'", "blob:"],
         objectSrc: ["'none'"],
-      }
-    }
+      },
+    },
+    crossOriginEmbedderPolicy: false,
+    crossOriginResourcePolicy: false,
   })
 );
 
