@@ -52,17 +52,19 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        connectSrc: ["'self'", "https://api.mapbox.com", "https://events.mapbox.com"],
+        connectSrc: [
+          "'self'",
+          "https://api.mapbox.com",
+          "https://events.mapbox.com",
+          "https://cdn.jsdelivr.net",
+        ],
         scriptSrc: [
           "'self'",
           "'unsafe-inline'",
           "'unsafe-eval'",
-          "https://cdnjs.cloudflare.com",
           "https://cdn.jsdelivr.net",
           "https://kit.fontawesome.com",
-          "https://stackpath.bootstrapcdn.com",
           "https://api.mapbox.com",
-          "https://api.tiles.mapbox.com"
         ],
         styleSrc: [
           "'self'",
@@ -70,14 +72,27 @@ app.use(
           "https://cdnjs.cloudflare.com",
           "https://cdn.jsdelivr.net",
           "https://kit.fontawesome.com",
-          "https://stackpath.bootstrapcdn.com"
+          "https://stackpath.bootstrapcdn.com",
+          "https://fonts.googleapis.com",
+          "https://api.mapbox.com",
+        ],
+        fontSrc: [
+          "'self'",
+          "https://fonts.gstatic.com",
+          "https://cdnjs.cloudflare.com",
+          "https://cdn.jsdelivr.net",
+        ],
+        imgSrc: [
+          "'self'",
+          "data:",
+          "blob:",
+          "https://res.cloudinary.com",
+          "https://images.unsplash.com",
         ],
         workerSrc: ["'self'", "blob:"],
         objectSrc: ["'none'"],
-        imgSrc: ["'self'", "data:", "blob:", "https://res.cloudinary.com"],
-        fontSrc: ["'self'", "https://cdnjs.cloudflare.com", "https://cdn.jsdelivr.net"],
-      },
-    },
+      }
+    }
   })
 );
 
