@@ -1,9 +1,12 @@
 if(process.env.NODE_ENV != "production"){
   require('dotenv').config();
-}
+} 
+
+
 
 const express = require("express");
-const app = express();
+const app = express(); 
+const helmet = require("helmet");
 const mongoose = require("mongoose"); 
 const path = require("path");
 const methodOverride = require("method-override");  
@@ -49,6 +52,7 @@ app.use(
     contentSecurityPolicy: false
   })
 );
+
 
 
 const store = MongoStore.create({
